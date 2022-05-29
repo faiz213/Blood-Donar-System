@@ -28,9 +28,9 @@ void menu()
     cout << "\n\t |----------------------------------------------           |";
 }
 
-void addDonor(Data d1[], int &record)
+    void addDonor(Data d1[], int &record)
 {
-    file.open("donor'sdata.txt", ios::out | ios::app | ios::binary);
+    file.open("donors_data.txt", ios::out | ios::app | ios::binary);
     if (file.is_open())
     {
         cout << "-----------Add  a Record----------------" << endl;
@@ -54,8 +54,9 @@ void addDonor(Data d1[], int &record)
     record++;
 }
 // search donor data by name
-void searchData(Data d1[], int &record);
+    void searchData(Data d1[], int &record);
 {
+
     string name;
     cout << "\n\tEnter donor  name you  want to search : ";
     cin >> name;
@@ -80,7 +81,7 @@ else
     cout << endl;
     cout << "File not opened" << endl;
 }
-void searchbyBgroup(Data d1[], int &records);
+    void searchbyBgroup(Data d1[], int &records);
 {
     int searchbyBgroup;
     cout << "--Enter the Blood group of donor to see the list of same Blood group donors--" << endl;
@@ -92,7 +93,7 @@ void searchbyBgroup(Data d1[], int &records);
     file.open("donors_data.txt", ios::in | ios::binary);
     if (file.is_open())
     {
-        for (int i; i < records; i++)
+        for (int i=0; i < records; i++)
         {
             file.read(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
             if (d1[i].Bgroup == searchbyBgroup)
@@ -102,7 +103,27 @@ void searchbyBgroup(Data d1[], int &records);
         }
     }
 }
+    void updateRecord(Data d1[],int &records);
+{
+    string updateRecord;
+    cout<<"Enter the name of donor to update information"<<endl;
+    getline(cin,updateRecord);
+    file.open("donors_data.txt", ios::in | ios::binary | ios::out);
+    if(file.is_open())
+    {
+        for(int i=0;int<records;i++)
+        {
+            file.read(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
+            if(d1[i].name == updateRecord)
+            {
+            cout<<"Blood donation of donor updated from "<<d1[i].donationNum <<"to"<<d1[i].donationNum +1<<endl;
+            file.write(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
 
+            }
+        }
+    }
+}
+  
 int main()
 {
     bool program = 0;
@@ -127,9 +148,16 @@ int main()
             searchData(d1, index);
             break;
         }
-         case '3';
-         searchbyBgroup(d1,index);
-         break;
+         case '3':
+         {
+            searchbyBgroup(d1,index);
+            break;
+         }
+         case '4':
+         {
+           updateRecord(d1,index);
+           break;
+         }
     }
     }while(program==0);
 
