@@ -44,15 +44,19 @@ void menu()
         cout << "Enter Donor number of donations  " << record + 1 << endl;
         cin >> d1[record].donationNum;
         file.write(reinterpret_cast<char *>(&d1[record]), sizeof(Data));
-    }
+}
+
     else
     {
         cout << endl;
         cout << "Eror file opening ";
     }
+    
     file.close();
-    record++;
+    
 }
+    
+
 // search donor data by name
     void searchData(Data d1[], int &record);
 {
@@ -130,6 +134,7 @@ else
         getline(cin,removeRecord);
         cout<<endl;
         file.open("donors_data.txt", ios::in | ios::binary | ios::out);
+        ofstream file;
         temp.open("temporary_file.txt", ios::binary | ios::out);
         if (file.is_open() && temporary_file.is_open())
         {
