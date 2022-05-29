@@ -123,7 +123,29 @@ else
         }
     }
 }
-  
+    void removeRecord(Data d1[],int &records);
+    {
+        string removeRecord;
+        cout<<"Remove donor's record due to medical reasons"<<endl;
+        getline(cin,removeRecord);
+        cout<<endl;
+        file.open("donors_data.txt", ios::in | ios::binary | ios::out);
+        temp.open("temporary_file.txt", ios::binary | ios::out);
+        if (file.is_open() && temporary_file.is_open())
+        {
+            for(int i=0;int<index;i++)
+            {
+                file.read(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
+                if (donor[i].rollno!= removeRecord)
+                {
+                    temp.write(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
+                    // to get data from temprory file to original
+                }
+            }
+        }
+
+
+    }
 int main()
 {
     bool program = 0;
@@ -157,6 +179,11 @@ int main()
          {
            updateRecord(d1,index);
            break;
+         }
+         case '5':
+         {
+             removeRecord(d1,index);
+             break;
          }
     }
     }while(program==0);
