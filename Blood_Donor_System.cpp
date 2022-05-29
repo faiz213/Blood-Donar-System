@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-const int tRecord=100;
+const int tRecord = 100;
 using namespace std;
 
 fstream file;
@@ -53,56 +53,83 @@ void addDonor(Data d1[], int &record)
     file.close();
     record++;
 }
-    // search donor data by name 
-    void searchData(Data,d1[] int record ); 
-    {
+// search donor data by name
+void searchData(Data d1[], int &record);
+{
     string name;
     cout << "\n\tEnter donor  name you  want to search : ";
     cin >> name;
     Data student;
     file.open("donors_data.txt", ios::in | ios::binary);
-    if (!read.eof()) {
+    if (!read.eof())
+    {
 
-        cout<<"---------Donor's Data----------"<<endl;
+        cout << "---------Donor's Data----------" << endl;
         file.read(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
         cin.ignore();
         getline(read, student.name);
-        if (student.name == name) {
-            cout<<student;
+        if (student.name == name)
+        {
+            cout << student;
             return name;
         }
     }
 }
-else 
+else
 {
-    cout<<endl;
-    cout<<"File not opened"<<endl;
+    cout << endl;
+    cout << "File not opened" << endl;
 }
-
+void searchbyBgroup(Data d1[], int &records);
+{
+    int searchbyBgroup;
+    cout << "--Enter the Blood group of donor to see the list of same Blood group donors--" << endl;
+    getline(cin, searchbyBgroup);
+    cout << endl;
+    cout << "---------Data of All Same Blood group type-----------" << endl;
+    cout << searchbyBgroup;
+    cout << endl;
+    file.open("donors_data.txt", ios::in | ios::binary);
+    if (file.is_open())
+    {
+        for (int i; i < records; i++)
+        {
+            file.read(reinterpret_cast<char *>(&d1[i]), sizeof(Data));
+            if (d1[i].Bgroup == searchbyBgroup)
+            {
+                searchbyBgroup(d1, i);
+            }
+        }
+    }
+}
 
 int main()
 {
-    bool program=0;
+    bool program = 0;
     Data d1[tRecord];
-    int index=0;
-    do{
-    menu();
-    char ch;
-    cout<<endl;
-    cout<<"Enter the key to funtion :"<<endl;
-    cin>>ch;
-    switch(ch)
+    int index = 0;
+    do
     {
+        menu();
+        char ch;
+        cout << endl;
+        cout << "Enter the key to funtion :" << endl;
+        cin >> ch;
+        switch (ch)
+        {
         case '1':
         {
-            addDonor(d1,index);
+            addDonor(d1, index);
             break;
         }
-        // case '2':
-        // {
-        // searchData(d1,record);
-        // break;
-        // }
+        case '2':
+        {
+            searchData(d1, index);
+            break;
+        }
+         case '3';
+         searchbyBgroup(d1,index);
+         break;
     }
     }while(program==0);
 
