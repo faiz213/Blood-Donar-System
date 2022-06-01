@@ -52,10 +52,10 @@ void addStudent()
 
 void print(Student s)
 {
-    cout << "\n\t---Stuent Data---";
+    cout << "\n\t---donor's Data---";
     cout << "\n\tID is : " << s.id;
-    cout << "\n\tName is : " << s.name;
-    cout << "\n\tName is : " << s.bloodGroup;
+    cout << "\n\tdonor is : " << s.name;
+    cout << "\n\tblood group is : " << s.bloodGroup;
     cout << "\n\tAge is : " << s.age;
     cout << "\n\tDegree is : " << s.degree;
     cout << "\n\tSmester Number is : " << s.semesterNo;
@@ -99,6 +99,30 @@ void searchData()
         read >> student.degree;
         read >> student.semesterNo;
         if (student.name == name)
+        {
+            print(student);
+        }
+    }
+}
+void searchDatabyBloodGroup()
+{
+    cin.ignore();
+    string blood;
+    cout << "\n\tEnter student name want to search : ";
+    getline(cin, blood);
+    Student student;
+    ifstream read;
+    read.open("student.txt");
+    while (!read.eof())
+    {
+        read >> student.id;
+        read.ignore();
+        getline(read, student.name);
+        getline(read, student.bloodGroup);
+        read >> student.age;
+        read >> student.degree;
+        read >> student.semesterNo;
+        if (student.bloodGroup == blood)
         {
             print(student);
         }
@@ -261,6 +285,7 @@ int main()
     cout << "\n\t |3. Search all record of donors by name            |";
     cout << "\n\t |4. Delete Donor record                            |";
     cout << "\n\t |5. Update Donor record                            |";
+    cout << "\n\t |6. search donors by blood group                   |";
     cout << "\n\t |--------------------------------------------------|";
 
         int choice;
@@ -283,6 +308,9 @@ int main()
         case 5:
             updateData();
             break;
+        case 6:
+            searchDatabyBloodGroup();
+            break;  
         }
     }
 }
