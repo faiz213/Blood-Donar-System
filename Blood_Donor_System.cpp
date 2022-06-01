@@ -17,15 +17,15 @@ void addStudent()
 {
     Student student;
     cin.ignore();
-    cout << "\n\tEnter student name : ";
+    cout << "\n\tEnter donor name : ";
     getline(cin, student.name);
-    cout << "\n\tEnter student blood group : ";
+    cout << "\n\tEnter donor blood group : ";
     getline(cin, student.bloodGroup);
-    cout << "\n\tEnter student age : ";
+    cout << "\n\tEnter donor age : ";
     cin >> student.age;
-    cout << "\n\tEnter student degree : ";
+    cout << "\n\tEnter donor degree : ";
     cin >> student.degree;
-    cout << "\n\tEnter student semester number : ";
+    cout << "\n\tEnter donor semester number : ";
     cin >> student.semesterNo;
     ID++;
 
@@ -84,7 +84,7 @@ void searchData()
 {
     cin.ignore();
     string name;
-    cout << "\n\tEnter student name want to search : ";
+    cout << "\n\tEnter donor name want to search : ";
     getline(cin,name);
     Student student;
     ifstream read;
@@ -108,7 +108,7 @@ void searchDatabyBloodGroup()
 {
     cin.ignore();
     string blood;
-    cout << "\n\tEnter student name want to search : ";
+    cout << "\n\tEnter donor name want to search : ";
     getline(cin, blood);
     Student student;
     ifstream read;
@@ -133,7 +133,7 @@ void deleteData()
 {
     cin.ignore();
     string name;
-    cout << "\n\tEnter student name want to search : ";
+    cout << "\n\tEnter donor name want to search : ";
     getline(cin, name);
     cout << "\n\tYou want to delete record (y/n) : ";
     char choice;
@@ -186,7 +186,7 @@ void updateData()
 {
     cin.ignore();
     string name;
-    cout << "\n\tEnter student name want to search : ";
+    cout << "\n\tEnter donor name want to search : ";
     getline(cin, name);
     cout << "\n\tYou want to update record (y/n) : ";
     char choice;
@@ -195,15 +195,15 @@ void updateData()
     {
         Student newData;
         cin.ignore();
-        cout << "\n\tEnter student name : ";
+        cout << "\n\tEnter donor name : ";
         getline(cin, newData.name);
-        cout << "\n\tEnter student blood group : ";
+        cout << "\n\tEnter donor blood group : ";
         getline(cin, newData.bloodGroup);
-        cout << "\n\tEnter student age : ";
+        cout << "\n\tEnter donor age : ";
         cin >> newData.age;
-        cout << "\n\tEnter student degree : ";
+        cout << "\n\tEnter donor degree : ";
         cin >> newData.degree;
-        cout << "\n\tEnter student semester number : ";
+        cout << "\n\tEnter donor semester number : ";
         cin >> newData.semesterNo;
         Student student;
         ofstream tempFile;
